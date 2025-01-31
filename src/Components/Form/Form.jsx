@@ -3,7 +3,7 @@ import axios from "axios";
 
 const FormComponent = () => {
   // State for all necessary data
-  const [id, setId] = useState("");
+  const [id, setId] = useState();
   const [varMass, setVarMass] = useState("");
   const [thing1HasHappened, setThing1HasHappened] = useState(false);
   const [thing2HasHappened, setThing2HasHappened] = useState(false);
@@ -26,6 +26,7 @@ const FormComponent = () => {
         part_id: partId,
       });
       setMessage(response.data.message);
+      setId(id + 1);
     } catch (error) {
       setMessage("An error occured. Please try again.");
       console.error(error);
@@ -40,7 +41,7 @@ const FormComponent = () => {
         <input
           type="text"
           value={id}
-          onChange={(e) => setId(e.target.value)}
+          onChange={(e) => setId(Number(e.target.value))}
           placeholder="ID"
           required
         />
